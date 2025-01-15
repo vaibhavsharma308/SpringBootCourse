@@ -47,8 +47,13 @@ public class EmployeeController {
         return data;
     }
     @PostMapping(path="/createEmployee")
-    public String createEmployee(){
-        return "Inside Post Mapping";
+    public EmployeeDTO createEmployee(@RequestBody EmployeeDTO inputEmployee){
+        /*
+                Understanding Request Mapping
+                When so much data is coming from the front end we use Request Body
+        */
+        inputEmployee.setEmployeeId("8916");
+        return inputEmployee;
     }
     @PutMapping(path="changeEmployee")
     public String changeEmployeeData(){

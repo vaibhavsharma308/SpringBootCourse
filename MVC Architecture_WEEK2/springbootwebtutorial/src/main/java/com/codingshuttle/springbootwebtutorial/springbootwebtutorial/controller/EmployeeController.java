@@ -2,10 +2,7 @@ package com.codingshuttle.springbootwebtutorial.springbootwebtutorial.controller
 
 
 import com.codingshuttle.springbootwebtutorial.springbootwebtutorial.dtos.EmployeeDTO;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +14,7 @@ if we write @Controller we need to write Response Body
 Getting data from URL
 We HAVE
 1.Path Variable : data we want inside URL PART
+For identifying resources uniquely.
 WE MADE IT. DEFINITELY WE NEED IT mandatory we need to define the path Variable
 
 2.Request Param : filtering ,sorting ,Optional Fields
@@ -29,6 +27,8 @@ public class EmployeeController {
     public String getMyMessage(){
         return "Secret Message : Wallet Id";
     }
+
+
     @GetMapping("employees/{employeeId}")
     public EmployeeDTO getEmployeeById(@PathVariable String employeeId){
         return new EmployeeDTO(
@@ -45,6 +45,13 @@ public class EmployeeController {
     ,@RequestParam(required=false ,defaultValue = "Vaibhav Sharma") String name ){
         String data= "Return Data Will Be :" + age+" "+name;
         return data;
-
+    }
+    @PostMapping(path="/createEmployee")
+    public String createEmployee(){
+        return "Inside Post Mapping";
+    }
+    @PutMapping(path="changeEmployee")
+    public String changeEmployeeData(){
+        return "Inside Put Mapping";
     }
 }
